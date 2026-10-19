@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Porsche 3D Experience — Global Styles
+   Tailwind CSS v4 theme configuration
+   ============================================================ */
+
+@theme {
+  --color-obsidian: #08090B;
+  --color-graphite: #17191D;
+  --color-graphite-light: #1E2127;
+  --color-graphite-mid: #252830;
+  --color-porcelain: #F4F3EF;
+  --color-porcelain-dim: #D8D7D3;
+  --color-silver: #AEB4BC;
+  --color-silver-dark: #7A8290;
+  --color-racing-red: #D71920;
+  --color-racing-red-hover: #E62B32;
+  --color-racing-red-dark: #B5151B;
+
+  --font-display: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-up: slide-up 0.6s ease-out forwards;
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ── Base Styles ─────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-obsidian);
+  color: var(--color-porcelain);
+  overflow-x: hidden;
+}
+
+/* ── Selection ───────────────────────────────────────────── */
+
+::selection {
+  background-color: var(--color-racing-red);
+  color: white;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-graphite-mid);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-silver-dark);
+}
+
+/* ── Focus ───────────────────────────────────────────────── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-racing-red);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Utility Classes ─────────────────────────────────────── */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-porcelain) 0%, var(--color-silver) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(180deg, var(--color-obsidian) 0%, var(--color-graphite) 100%);
+}
+
+.bg-gradient-section {
+  background: linear-gradient(180deg, var(--color-graphite) 0%, var(--color-obsidian) 100%);
+}
+
+.border-subtle {
+  border-color: rgba(174, 180, 188, 0.12);
+}
+
+.glass-panel {
+  background: rgba(23, 25, 29, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(174, 180, 188, 0.1);
+}
+
+.scroll-indicator {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+/* ── Container ───────────────────────────────────────────── */
+
+.container-wide {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 6rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 4rem);
+}
+
+/* ── Card Hover ──────────────────────────────────────────── */
+
+.card-hover {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(174, 180, 188, 0.2);
+}
